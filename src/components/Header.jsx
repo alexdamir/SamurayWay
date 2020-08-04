@@ -1,9 +1,9 @@
 import React from 'react';
-import './Header.module.css';
+import h from './Header.module.css';
 
 const Header = () => {
     return (
-        <header className='header'>
+        <header className={h.header}>
 
             <img src='https://www.freelogodesign.org/Content/img/logo-samples/bakary.png' alt='logo' />
             

@@ -1,9 +1,9 @@
 import React from 'react';
-import './Profile.module.css';
+import p from './Profile.module.css';
 
 const Profile = () => {
     return (
-        <div className='content'>
+        <div className={p.content}>
             <div>
                 <img src="https://www.w3schools.com/howto/img_snow_wide.jpg" alt='' />
             </div>

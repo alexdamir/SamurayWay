@@ -1,5 +1,7 @@
 import React from 'react';
 import css from './MyPosts.module.css';
+import Post from './Post/Post';
+
 
 const MyPosts = () => {
     return (
@@ -8,38 +10,14 @@ const MyPosts = () => {
             My Posts
             
             <div className={css.posts}>
-
-            <div>
                 New post
                 <textarea></textarea>
                 <button>Add post</button>
-            </div>
+                <Post message="Hi! How are you?" likescount='0' />
+                <Post message="I study React" likescount='23' />
 
-            <div>
-                <div className={`${css.item} ${css.active}`}>
-                    post 1
-                </div>
-                <div className={css.item}>
-                    post 2
-                </div>
-                <div className={css.item}>
-                    post 3
-                </div>
-                <div className={css.item}>
-                    post 4
-                </div>
-                <div className={css.item}>
-                    post 5
-                </div>
             </div>
-
-            
-            </div>
-
         </div >
-
-
-
     );
 }
 

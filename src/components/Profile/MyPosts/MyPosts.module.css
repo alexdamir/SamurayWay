@@ -1,0 +1,11 @@
+.myposts {
+  background-color: deepskyblue;
+}
+
+.item {
+  color: rgb(65, 173, 92);
+}
+
+.item.active {
+  color: aqua;
+}

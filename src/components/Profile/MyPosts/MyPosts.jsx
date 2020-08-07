@@ -7,6 +7,9 @@ let postsData = [
     {id: 2, message: "I study React"    , likescount: 12}
 ];
 
+let postElements = postsData.
+    map(p => <Post message={p.message} likescount={p.likescount} />);
+
 const MyPosts = () => {
     return (
         <div className={css.myposts}>
@@ -17,8 +20,7 @@ const MyPosts = () => {
                 New post
                 <textarea></textarea>
                 <button>Add post</button>
-                <Post message={postsData[0].message} likescount={postsData[0].likescount} />                
-                <Post message={postsData[1].message} likescount={postsData[1].likescount} />                
+                {postElements}                
             </div>
         </div >
     );

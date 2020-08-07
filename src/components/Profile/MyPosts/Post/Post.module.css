@@ -3,7 +3,7 @@
 }
 
 .item.active {
-  color: aqua;
+  color: rgb(60, 241, 60);
 }
 
 .item img {

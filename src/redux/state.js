@@ -1,3 +1,6 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+
 export let store = {
     _state:  {
         profileData: {
@@ -37,7 +40,7 @@ export let store = {
     },
     
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             let newPost = {
                 id: this._state.profileData.postsData.length,
                 message: this._state.profileData.newPostTextValue,
@@ -47,9 +50,17 @@ export let store = {
             this._state.profileData.newPostTextValue = '';
             this._callRenderAll(this);
     
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profileData.newPostTextValue = action.newText;
             this._callRenderAll(this);    
         }
     }
 }
+
+
+export const addPostActionCreator = () => ( {type:ADD_POST} );
+export const updateNewPostTextActionCreator = (text) => 
+    ( {type:UPDATE_NEW_POST_TEXT, newText:text} );    
+
+
+

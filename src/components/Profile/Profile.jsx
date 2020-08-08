@@ -1,7 +1,7 @@
 import React from 'react';
 import MyPosts from './MyPosts/MyPosts';
 
-const Profile = () => {
+const Profile = (props) => {
     return (
         <div>
             <div>
@@ -11,7 +11,7 @@ const Profile = () => {
                 ava + description
             </div>
 
-            <MyPosts />
+            <MyPosts state={props.state}/>
 
         </div>
 

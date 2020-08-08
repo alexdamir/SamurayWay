@@ -2,15 +2,10 @@ import React from 'react';
 import css from './MyPosts.module.css';
 import Post from './Post/Post';
 
-let postsData = [
-    {id: 1, message: "Hi! How are you?" , likescount: 11},
-    {id: 2, message: "I study React"    , likescount: 12}
-];
+const MyPosts = (props) => {
+    let postElements =
+        props.state.profileData.postsData.map(p => <Post message={p.message} likescount={p.likescount} />);
 
-let postElements = 
-  postsData.map(p => <Post message={p.message} likescount={p.likescount} />);
-
-const MyPosts = () => {
     return (
         <div className={css.myposts}>
             

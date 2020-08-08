@@ -29,19 +29,11 @@ export let store = {
     getstate() {
         return this._state;
     },
-<<<<<<< HEAD
     _callRenderAll(store)  {
         console.log('state chаnged');
     },
     subscribe (observer) {
         this._callRenderAll = observer;
-=======
-    _callObserver(store)  {
-        console.log('state chаnged');
-    },
-    subscribe (observer) {
-        this._callObserver = observer;
->>>>>>> 98328e2035cfc286720b297a71e2cc0f59e9909c
     },
     
     dispatch(action) {
@@ -53,19 +45,11 @@ export let store = {
             };
             this._state.profileData.postsData.push(newPost);
             this._state.profileData.newPostTextValue = '';
-<<<<<<< HEAD
             this._callRenderAll(this);
     
         } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
             this._state.profileData.newPostTextValue = action.newText;
             this._callRenderAll(this);    
-=======
-            this._callObserver(this);
-    
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profileData.newPostTextValue = action.newText;
-            this._callObserver(this);    
->>>>>>> 98328e2035cfc286720b297a71e2cc0f59e9909c
         }
     }
 }

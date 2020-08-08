@@ -4,15 +4,15 @@ import Post from './Post/Post';
 
 const MyPosts = (props) => {
     let postElements =
-        props.store._state.profileData.postsData.map(p => <Post message={p.message} likescount={p.likescount} />);
+        props.store.getstate().profileData.postsData.map(p => <Post message={p.message} likescount={p.likescount} />);
     let newPostElenent = React.createRef();
     let addPost = () => {
-        let text = newPostElenent.current.value;
-        props.store.addPost(text);
+        props.store.dispatch({type:'ADD-POST'});
     };
     let changeNewPost = () => {
-        let text = newPostElenent.current.value;
-        props.store.changeNewPostText(text);
+        let action = {type:'UPDATE-NEW-POST-TEXT',
+                      newText:newPostElenent.current.value};
+        props.store.dispatch(action);
     };
     
     return (
@@ -23,7 +23,7 @@ const MyPosts = (props) => {
             <div className={css.posts}>
                 New post
                 <textarea ref={newPostElenent} onChange={changeNewPost} 
-                            value={props.store._state.profileData.newPostTextValue}/>
+                            value={props.store.getstate().profileData.newPostTextValue}/>
                
                 <button onClick={addPost}>Add post</button> 
                 {postElements}                

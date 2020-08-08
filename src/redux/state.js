@@ -20,13 +20,19 @@ export let state = {
             {id: 1, message: "Hi! How are you? Yes?" , likescount: 11},
             {id: 2, message: "I study React"    , likescount: 12}
         ],
-        addPost: (text) => {
+        addPost: () => {
             let newPost = {
                 id: state.profileData.postsData.length,
-                message: text,
+                message: state.profileData.newPostTextValue,
                 likescount:0
             };
             state.profileData.postsData.push(newPost);
+            state.profileData.newPostTextValue = '';
+            RenderAllTree();
+        },
+        newPostTextValue: '',
+        changeNewPostText: (text) => {
+            state.profileData.newPostTextValue = text;
             RenderAllTree();
         }
           

@@ -10,7 +10,11 @@ const MyPosts = (props) => {
         let text = newPostElenent.current.value;
         props.state.profileData.addPost(text);
     };
-
+    let changeNewPost = () => {
+        let text = newPostElenent.current.value;
+        props.state.profileData.changeNewPostText(text);
+    };
+    
     return (
         <div className={css.myposts}>
             
@@ -18,7 +22,9 @@ const MyPosts = (props) => {
             
             <div className={css.posts}>
                 New post
-                <textarea ref={newPostElenent}></textarea>
+                <textarea ref={newPostElenent} onChange={changeNewPost} 
+                            value={props.state.profileData.newPostTextValue}/>
+               
                 <button onClick={addPost}>Add post</button> 
                 {postElements}                
             </div>

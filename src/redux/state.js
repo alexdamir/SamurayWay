@@ -1,4 +1,20 @@
-let state = {
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from '../App';
+import { BrowserRouter } from 'react-router-dom';
+
+export function RenderAllTree()  {
+  ReactDOM.render(
+
+    <BrowserRouter>
+      <App state={state} />
+    </BrowserRouter>
+    ,
+    document.getElementById('root')
+  );
+};
+
+export let state = {
     profileData: {
         postsData: [
             {id: 1, message: "Hi! How are you? Yes?" , likescount: 11},
@@ -11,6 +27,7 @@ let state = {
                 likescount:0
             };
             state.profileData.postsData.push(newPost);
+            RenderAllTree();
         }
           
     },
@@ -32,6 +49,3 @@ let state = {
         ]
     }
 }
-
-
-export default state;

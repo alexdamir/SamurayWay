@@ -1,17 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from '../App';
-import { BrowserRouter } from 'react-router-dom';
+let RenderAllTree = (state) => {
+    console.log('state chnged');
+};
 
-export function RenderAllTree()  {
-  ReactDOM.render(
-
-    <BrowserRouter>
-      <App state={state} />
-    </BrowserRouter>
-    ,
-    document.getElementById('root')
-  );
+export let subscribe = (observer) => {
+    RenderAllTree = observer;    
 };
 
 export let state = {
@@ -28,12 +20,12 @@ export let state = {
             };
             state.profileData.postsData.push(newPost);
             state.profileData.newPostTextValue = '';
-            RenderAllTree();
+            RenderAllTree(state);
         },
         newPostTextValue: '',
         changeNewPostText: (text) => {
             state.profileData.newPostTextValue = text;
-            RenderAllTree();
+            RenderAllTree(state);
         }
           
     },

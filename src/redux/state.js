@@ -3,7 +3,16 @@ let state = {
         postsData: [
             {id: 1, message: "Hi! How are you? Yes?" , likescount: 11},
             {id: 2, message: "I study React"    , likescount: 12}
-        ]        
+        ],
+        addPost: (text) => {
+            let newPost = {
+                id: state.profileData.postsData.length,
+                message: text,
+                likescount:0
+            };
+            state.profileData.postsData.push(newPost);
+        }
+          
     },
     dialogsData: {
          dialogsData: [
@@ -23,5 +32,6 @@ let state = {
         ]
     }
 }
+
 
 export default state;

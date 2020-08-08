@@ -8,7 +8,7 @@ const MyPosts = (props) => {
     let newPostElenent = React.createRef();
     let addPost = () => {
         let text = newPostElenent.current.value;
-        alert(text);
+        props.state.profileData.addPost(text);
     };
 
     return (

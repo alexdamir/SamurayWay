@@ -6,7 +6,7 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import {store} from './redux/state';
 
-function RenderAllTree(store)  {
+function RenderAllTree()  {
     ReactDOM.render(
   
     <BrowserRouter>
@@ -16,7 +16,7 @@ function RenderAllTree(store)  {
     );
   };
   
-RenderAllTree(store);
+RenderAllTree();
 
 store.subscribe(RenderAllTree);
 

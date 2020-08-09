@@ -1,10 +1,10 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const ADD_MESSAGE = 'ADD_MESSAGE';
-const UPDATE_NEW_MESSAGE_BODY ='UPDATE_NEW_MESSAGE_BODY';
+import {profileReducer} from './profile-reducer';
+import {dialogReducer} from './dialog-reducer';
+import {sidebarReducer} from './sidebar-reducer';
 
 export let store = {
     _state:  {
+        sidebarData: {},
         profileData: {
             postsData: [
                 {id: 1, message: "Hi! How are you? Yes?" , likescount: 11},
@@ -40,50 +40,12 @@ export let store = {
     },
     subscribe (observer) {
         this._callRenderAll = observer;
-    },
-    
+    },    
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            let id = 1 + Math.max(...(this._state.profileData.postsData.map( (e) => (e.id) )));
-            let newPost = {
-                id: id,
-                message: this._state.profileData.newPostTextValue,
-                likescount:0
-            };
-            this._state.profileData.postsData.push(newPost);
-            this._state.profileData.newPostTextValue = '';
-            this._callRenderAll(this);
-    
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profileData.newPostTextValue = action.newText;
-            this._callRenderAll(this);    
-        } else if (action.type === ADD_MESSAGE) {
-            let id = 1 + Math.max(...(this._state.dialogsData.messagesData.map( (e) => (e.id) )));
-            let newMessage = {
-                id: id,
-                message: this._state.dialogsData.newMessageBodyValue,
-                likescount:0
-            };
-            this._state.dialogsData.messagesData.push(newMessage);
-            this._state.dialogsData.newMessageBodyValue = '';
-            this._callRenderAll(this);
-    
-        } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-            this._state.dialogsData.newMessageBodyValue = action.body;
-            this._callRenderAll(this);    
-        }
+        this._state.profileData = profileReducer(this._state.profileData, action);
+        this._state.dialogsData = dialogReducer(this._state.dialogsData, action);
+        this._state.sidebarData = sidebarReducer(this._state.sidebarData, action);
+        this._callRenderAll(this);
     }
+
 }
-
-
-export const addPostActionCreator = () => ({ type: ADD_POST });
-export const updateNewPostTextActionCreator = (text) =>
-    ({ type: UPDATE_NEW_POST_TEXT, newText: text });
-
-export const addNewMessageCreator = () => ({ type: ADD_MESSAGE });
-export const updateNewMessageBodyCreator = (text) =>
-    ({ type: UPDATE_NEW_MESSAGE_BODY, body: text });    
-    
-
-
-

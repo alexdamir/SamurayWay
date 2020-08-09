@@ -1,11 +1,11 @@
 import React from 'react';
 import css from './MyPosts.module.css';
 import Post from './Post/Post';
-import {addPostActionCreator,updateNewPostTextActionCreator} from '../../../redux/state.js'
+import {addPostActionCreator,updateNewPostTextActionCreator} from './../../../redux/state';
 
 const MyPosts = (props) => {
     let postElements =
-        props.store.getstate().profileData.postsData.map(p => <Post message={p.message} likescount={p.likescount} />);
+        props.store.getstate().profileData.postsData.map(p => <Post message={p.message} likescount={p.likescount} id={p.id} />);
     let newPostElenent = React.createRef();
     let addPost = () => {
         props.store.dispatch( addPostActionCreator() );
@@ -17,16 +17,18 @@ const MyPosts = (props) => {
     
     return (
         <div className={css.myposts}>
-            
+
             My Posts
-            
+
             <div className={css.posts}>
-                New post
-                <textarea ref={newPostElenent} onChange={changeNewPost} 
-                            value={props.store.getstate().profileData.newPostTextValue}/>
-               
-                <button onClick={addPost}>Add post</button> 
-                {postElements}                
+                {postElements}
+                <div>
+                    <div>New post</div>
+                    <div><textarea ref={newPostElenent} onChange={changeNewPost}
+                        value={props.store.getstate().profileData.newPostTextValue} />
+                    </div>
+                    <div><button onClick={addPost}>Add post</button></div>
+                </div>
             </div>
         </div >
     );

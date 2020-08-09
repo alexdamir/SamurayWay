@@ -4,7 +4,7 @@ import css from '../Dialog.module.css';
 
 const Message = (props) => {
     return (
-        <div className={css.message}>{props.message}</div>
+        <div className={css.message}>({props.id}) {props.message}</div>
     );
 }
 

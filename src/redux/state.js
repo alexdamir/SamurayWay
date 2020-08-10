@@ -32,7 +32,7 @@ export let store = {
             newMessageBodyValue: ''   
         }
     },
-    getstate() {
+    getState() {
         return this._state;
     },
     _callRenderAll(store)  {

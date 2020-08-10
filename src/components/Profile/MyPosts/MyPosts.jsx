@@ -4,8 +4,10 @@ import Post from './Post/Post';
 import {addPostActionCreator,updateNewPostTextActionCreator} from './../../../redux/profile-reducer';
 
 const MyPosts = (props) => {
-    let postElements =
-        props.store.getstate().profileData.postsData.map(p => <Post message={p.message} likescount={p.likescount} id={p.id} />);
+    debugger;
+    const state = props.store.getState();
+    let postElements = 
+        state.profileData.postsData.map(p => <Post message={p.message} likescount={p.likescount} id={p.id} />);
     let newPostElenent = React.createRef();
     let addPost = () => {
         props.store.dispatch( addPostActionCreator() );
@@ -25,7 +27,7 @@ const MyPosts = (props) => {
                 <div>
                     <div>New post</div>
                     <div><textarea ref={newPostElenent} onChange={changeNewPost}
-                        value={props.store.getstate().profileData.newPostTextValue} />
+                        value={props.store.getState().profileData.newPostTextValue} />
                     </div>
                     <div><button onClick={addPost}>Add post</button></div>
                 </div>

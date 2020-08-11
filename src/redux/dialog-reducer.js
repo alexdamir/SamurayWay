@@ -24,20 +24,25 @@ export const dialogReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_MESSAGE:
       let id = 1 + Math.max(...(state.messagesData.map((e) => (e.id))));
-      let newMessage = {
-        id: id,
-        message: state.newMessageBodyValue,
-        likescount: 0
+      return {
+         ...state,
+         messagesData: [
+         ...state.messagesData,
+            {
+              id: id,
+              message:       state.newMessageBodyValue,
+              likescount: 0
+            }
+         ],
+         newMessageBodyValue: ''
       };
-      state.messagesData.push(newMessage);
-      state.newMessageBodyValue = '';
-
-      return state;
 
 
     case UPDATE_NEW_MESSAGE_BODY:
-      state.newMessageBodyValue = action.body;
-      return state;
+      return {
+          ...state,
+          newMessageBodyValue: action.body
+      };
     default:
       return state;
   }

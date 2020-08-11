@@ -6,9 +6,9 @@ import {sidebarReducer} from './sidebar-reducer';
 
 
 let redusers = combineReducers({
-    sidebarData: sidebarReducer,
-    profileData: profileReducer,
-    dialogsData: dialogReducer
+    sidebarDataPage: sidebarReducer,
+    profileDataPage: profileReducer,
+    dialogsDataPage: dialogReducer
   });
   
 export let store = createStore(redusers );

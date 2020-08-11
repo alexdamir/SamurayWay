@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 // }
 
 let mapStateToProps = (state) => {
-    return {state: state.dialogsData };
+    return {state: state.dialogsDataPage };
 };
 let mapDispatchToProps = (dispatch) => {
     return {

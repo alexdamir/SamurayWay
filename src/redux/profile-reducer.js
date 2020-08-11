@@ -15,17 +15,23 @@ export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
             let id = 1 + Math.max(...(state.postsData.map((e) => (e.id))));
-            let newPost = {
-                id: id,
-                message: state.newPostTextValue,
-                likescount: 0
+            return {
+               ...state,
+               postsData: [
+                  ...state.postsData,
+                  {
+                   id: id,
+                   message:    state.newPostTextValue,
+                   likescount: 0
+                  }
+               ],
+            newPostTextValue: ''
             };
-            state.postsData.push(newPost);
-            state.newPostTextValue = '';
-            return state;
         case UPDATE_NEW_POST_TEXT:
-            state.newPostTextValue = action.newText;
-            return state;
+            return {
+            ...state,
+            newPostTextValue: action.newText
+            };
         default:
             return state;
     }

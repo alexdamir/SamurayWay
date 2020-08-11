@@ -4,18 +4,21 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import {store} from './redux/store-redux';
+import { store } from './redux/store-redux';
+import { Provider } from 'react-redux';
 
-function RenderAllTree()  {
-    ReactDOM.render(
-  
+function RenderAllTree() {
+  ReactDOM.render(
+
     <BrowserRouter>
-        <App store={store} />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </BrowserRouter>,
-     document.getElementById('root')
-    );
-  };
-  
+    document.getElementById('root')
+  );
+};
+
 RenderAllTree();
 
 store.subscribe(RenderAllTree);

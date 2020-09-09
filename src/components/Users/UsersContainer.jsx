@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import Users from "./Users";
 import * as axios from 'axios';
 import { followAC, unfollowAC, setUsersAC, setCurrentPageAC, toggleIsFetchingAC } from "../../redux/users-reducer";
-import loading from '../../assets/images/loading.gif'
+import Preloader from '../common/Preloader/Preloader';
+
+
 class UsersContainer extends React.Component {
 
     componentDidMount() {
@@ -28,7 +30,7 @@ class UsersContainer extends React.Component {
     render() {
         return (
             <>
-                { this.props.state.isFetching ? <img src={loading} alt=""/> : null}                
+                { this.props.state.isFetching ? <Preloader /> : null}                
                 <Users totalUsersCount={this.props.state.totalUsersCount}
                     pageSize={this.props.state.pageSize}
                     currentPage={this.props.state.currentPage}

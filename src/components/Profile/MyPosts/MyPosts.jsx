@@ -12,7 +12,7 @@ const MyPosts = (props) => {
         let text = event.target.value;
         props.changeNewPost(text);
     };
-    debugger;
+    
     return (
         <div className={css.myposts}>
 

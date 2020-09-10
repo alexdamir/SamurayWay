@@ -1,24 +1,15 @@
 import React from 'react';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
+import ProfileInfo from './PrifileInfo/ProfileInfo';
 
-const Profile = () => {
-    return (
-        <div>
+const Profile = (props) => {
+        return (
             <div>
-                <img src="https://www.w3schools.com/howto/img_snow_wide.jpg" alt='' />
+                <ProfileInfo profile={props.state.profile}/>
+                <MyPostsContainer />
             </div>
-            <div>
-                ava + description
-            </div>
-
-            <MyPostsContainer />
-
-        </div>
-
-
-
-
-    );
+        );
+ 
 }
 
 export default Profile;

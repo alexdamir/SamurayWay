@@ -12,7 +12,7 @@ const Header = (props) => {
             
 
             <div className={css.loginBlock}>
-                {props.state.isAuth ? props.state.id
+                {props.state.isAuth ? 'id:'+props.state.id
                 :<NavLink to={'/login'}>Login</NavLink> }
                 
             </div>

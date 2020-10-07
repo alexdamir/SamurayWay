@@ -2,7 +2,7 @@ import React from 'react';
 import css from './Users.module.css';
 import userPhoto from '../../assets/images/user.png'
 import { NavLink } from 'react-router-dom';
-import {followAPI} from '../../api/api.jsx';
+import { followAPI } from '../../api/api.jsx';
 
 let Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -33,21 +33,25 @@ let Users = (props) => {
                         {u.status}
                         <div>
                             {u.followed ?
-                                <button onClick={() => {
+                                <button disabled={props.isFollowingInProgress.some(id=>id===u.id)} onClick={() => {
+                                    props.setFollowingInProgress(u.id,true);
                                     followAPI.unfollow(u.id).then(data => {
-                                            if (data.resultCode === 0) {
-                                                props.unfollow(u.id);
-                                            }
-                                        });
+                                        if (data.resultCode === 0) {
+                                            props.unfollow(u.id);
+                                        }
+                                        props.setFollowingInProgress(u.id,false);
+                                    });
 
                                 }}>Unfollow</button>
 
-                                : <button onClick={() => {
+                                : <button disabled={props.isFollowingInProgress.some(id=>id===u.id)} onClick={() => {
+                                    props.setFollowingInProgress(u.id,true);
                                     followAPI.follow(u.id).then(data => {
-                                            if (data.resultCode === 0) {
-                                                props.follow(u.id);
-                                            }
-                                        });
+                                        if (data.resultCode === 0) {
+                                            props.follow(u.id);
+                                        }
+                                        props.setFollowingInProgress(u.id,false);
+                                    });
 
                                 }}>Follow</button>}
                         </div>

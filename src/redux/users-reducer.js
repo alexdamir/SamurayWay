@@ -1,3 +1,5 @@
+import { followAPI, usersAPI } from "../api/api";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -69,3 +71,39 @@ export const setUsersCount = (totalUsersCount) => ({ type: SET_USERS_COUNT, tota
 export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage })
 export const setIsFetching = (isFetching) => ({ type: SET_IS_FETCHING, isFetching })
 export const setFollowingInProgress = (id, is) => ({ type: SET_FOLLOWING_IN_PROGRESS, id, is })
+
+export const getUsers = (currentPage, pageSize) => {
+    return (dispath) => {
+        dispath(setIsFetching(true));
+        usersAPI.getUsers(currentPage, pageSize)
+            .then(data => {
+                dispath(setIsFetching(false));
+                dispath(setUsers(data.items));
+                dispath(setUsersCount(data.totalCount));
+            });
+    }
+}
+
+export const setFollow = (userId) => {
+    return (dispath) => {
+        dispath(setFollowingInProgress(userId, true));
+        followAPI.follow(userId).then(data => {
+            if (data.resultCode === 0) {
+                dispath(follow(userId));
+            }
+            dispath(setFollowingInProgress(userId, false));
+        });
+    }
+}
+
+export const setUnFollow = (userId) => {
+    return (dispath) => {
+        dispath(setFollowingInProgress(userId, true));
+        followAPI.unfollow(userId).then(data => {
+            if (data.resultCode === 0) {
+                dispath(unfollow(userId));
+            }
+            dispath(setFollowingInProgress(userId, false));
+        });
+    }
+}
